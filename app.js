@@ -1,6 +1,17 @@
-const http=require('http') //webサーバーを構築するためのモジュール（https://www.sejuku.net/blog/72566）
-const server =http.createServer((req,res)=>{
-    res.writeHead(200,{'Content-Type':'text/plain'});//https://www.tuyano.com/index3?id=1126003&page=2
-    res.end('Hello World');
+const express=require('express');
+const app=express();
+
+const path=require('path');
+
+
+//１番目の引数は3000番,2番目はコールバック関数
+app.listen(3000,()=>{
+    console.log("Running at Port 3000...");
 });
-server.listen(3000);
+
+// 静的ファイルのルーティング
+//useメソッドはルーティングを行うミドルウェアを受け取る。
+//__dirnameはnode.jsモジュールで
+app.use(express.static(path.join(__dirname, 'public')));
+
+//
